@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Iazzetta/cru.js#readme",
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "gulp-minify": "^3.1.0"
   }
 }
