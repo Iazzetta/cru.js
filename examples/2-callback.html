@@ -1,0 +1,12 @@
+<div c-container="/examples/__.html"
+    c-callback="myCustomCallback">
+    waiting callback...
+</div>
+
+<script>
+    // example custom callback
+    $cruCallback('myCustomCallback', (result, element) => {
+        console.log(result)
+        element.innerHTML = result
+    })
+</script>
