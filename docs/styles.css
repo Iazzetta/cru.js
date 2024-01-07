@@ -40,13 +40,13 @@ ol li {
     text-transform: uppercase;
 }
 
-#basic-examples {
+#basic-docs {
     padding: .5em;
     margin: .5em;
     border-radius: 5px;
 }
 
-#basic-examples>* {
+#basic-docs>* {
     color: #white;
 }
 
