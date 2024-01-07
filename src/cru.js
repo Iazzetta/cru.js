@@ -26,7 +26,6 @@ const $cruLoadEvents = () => {
 const $cruLoadContainer = async (el) => {
     el.classList.add('loaded')
     const container = el.closest('[c-container]') || el
-    console.log('loaded', container.getAttribute('c-container'))
     const url = container.getAttribute('c-container')
     const target = container.getAttribute('c-target') || false
     const type = container.getAttribute('c-type') || 'html'
@@ -174,7 +173,6 @@ const cruFormatURL = (url, isRead, data) => {
 }
 
 const $cruCallback = (name, callback) => {
-    console.log(name)
     $cruConfig['callbacks'][name] = callback
 }
 const $cruHTML = (html) => {
