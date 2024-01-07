@@ -1,0 +1,25 @@
+{
+  "name": "cru-js",
+  "version": "1.0.1",
+  "description": "JavaScript library streamlining HTTP requests and HTML rendering, enabling easier web interactions with less code and higher efficiency.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iazzetta/cru.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Iazzetta/cru.js/issues"
+  },
+  "homepage": "https://github.com/Iazzetta/cru.js#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
