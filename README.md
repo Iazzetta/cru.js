@@ -22,6 +22,7 @@ Veja alguns exemplos: [https://iazzetta.github.io/crujs](https://iazzetta.github
 
 ### Container
 No cru.js, chamamos de `container` um elemento que contém o atributo `c-container="/seu-endpoint"`.
+
 Os containers são usados fazer uma requisição assim que a página ser carregada.
 Por padrão o HTML ou JSON da requisição é inserido dentro do elemento do container.
 
