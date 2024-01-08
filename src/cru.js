@@ -39,12 +39,12 @@ const $cruLoadContainer = async (el) => {
     const content = await $cruTypeResponse(type, response)
     const $target = target ? $cru(target):container
     // callbacks
+    if (target || target != 'off') {
+        if(target)$target.innerHTML = $cruHTML(content)
+        else if (type == 'html') $target.innerHTML = $cruHTML(content)
+    }
     if (callback) {
         $cruConfig['callbacks'][callback](content, $target)
-    }
-    else {
-        if (target) $target.innerHTML = $cruHTML(content)
-        else if (type == 'html') $target.innerHTML = $cruHTML(content)
     }
 
     $cruLoadEvents()
@@ -80,14 +80,15 @@ const cruRequest = async (el, method) => {
     if (removeClosest) el.closest(removeClosest).remove()
     if (swap) $cru(swap).outerHTML = content
     if (reloadContainer) $cruLoadContainer(el)
-    if (callback) $cruConfig['callbacks'][callback](content, $target)
-    else {
+    
+    if ($target) {
         if ($target) {
             $target.innerHTML = $cruHTML(content)
         } else if (type == 'html') {
             el.innerHTML = $cruHTML(content)
         }
     }
+    if (callback) $cruConfig['callbacks'][callback](content, $target)
     $cruLoadEvents()
 }
 

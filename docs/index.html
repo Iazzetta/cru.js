@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>crujs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -13,15 +14,15 @@
         <h1>cru.js</h1>
         <h3 class="subtitle">BASIC</h3>
         <ol>
-            <li><a c-target="#basic-docs" c-get="./1-basic.html">Container</a></li>
-            <li><a c-target="#basic-docs" c-get="./2-callback.html">Adding callback response JSON</a></li>
-            <li><a c-target="#basic-docs" c-get="./3-render_another_element.html">Rendering container in another element</a></li>
-            <li><a c-target="#basic-docs" c-get="./4-reload_container.html">Reload container</a></li>
-            <li><a c-target="#basic-docs" c-get="./5-form_basic.html">Form submit in any Http Methods (get, post, put, delete)</a></li>
-            <li><a c-target="#basic-docs" c-get="./6-form_append.html">Form append</a></li>
-            <li><a c-target="#basic-docs" c-get="./7-swap.html">Swap element</a></li>
-            <li><a c-target="#basic-docs" c-get="./8-simple_requests.html">Simple requests</a></li>
-            <li><a c-target="#basic-docs" c-get="./9-remove_closest.html">Remove Closest</a></li>
+            <li><a c-target="#basic-docs" c-get="./1-basic.html" c-callback="highlightAll">Container</a></li>
+            <li><a c-target="#basic-docs" c-get="./2-callback.html" c-callback="highlightAll">Adding callback response JSON</a></li>
+            <li><a c-target="#basic-docs" c-get="./3-render_another_element.html" c-callback="highlightAll">Rendering container in another element</a></li>
+            <li><a c-target="#basic-docs" c-get="./4-reload_container.html" c-callback="highlightAll">Reload container</a></li>
+            <li><a c-target="#basic-docs" c-get="./5-form_basic.html" c-callback="highlightAll">Form submit in any Http Methods (get, post, put, delete)</a></li>
+            <li><a c-target="#basic-docs" c-get="./6-form_append.html" c-callback="highlightAll">Form append</a></li>
+            <li><a c-target="#basic-docs" c-get="./7-swap.html" c-callback="highlightAll">Swap element</a></li>
+            <li><a c-target="#basic-docs" c-get="./8-simple_requests.html" c-callback="highlightAll">Simple requests</a></li>
+            <li><a c-target="#basic-docs" c-get="./9-remove_closest.html" c-callback="highlightAll">Remove Closest</a></li>
         </ol>
 
         <h3 class="subtitle">PREVIEW</h3>
@@ -30,7 +31,19 @@
     </div>
 
     
-    <script src="https://iazzetta.github.io/cru.js/cru-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    
+    <script defer src="./cru-min.js"></script>
+    <script defer>
+        window.onload = function() {
+            $cruCallback('highlightAll', (result, element) => {
+                $crus('pre code:not([data-highlighted="yes"])').forEach((el) => {
+                    hljs.highlightElement(el);
+                });
+            })
+            hljs.highlightAll();
+        }
+    </script>
     
 </body>
 </html>
