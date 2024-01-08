@@ -3,9 +3,18 @@
 ### Rápido, fácil de usar e performática!
 Uma biblioteca em Javascript onde o objetivo é facilitar as requisições usando apenas o HTML.
 
-### Iniciando
+### Inicializando
 ```js
 $C()
+```
+
+##### Configuração padrão
+```js
+$C({
+  'prefix_url': '', // '/api/v1'
+  'headers': {'Content-Type': 'application/json'},
+  'callbacks': {},
+})
 ```
 
 ## Documentação
