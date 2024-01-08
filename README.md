@@ -16,7 +16,11 @@ $C({
   'callbacks': {},
 })
 ```
-
+## Instalação
+Faça [download do cru.js](https://raw.githubusercontent.com/Iazzetta/cru.js/main/dist/cru-min.js) e inclua em seu projeto.
+```html
+<script src="cru-min.js"></script>
+```
 ## Documentação
 
 Veja alguns exemplos: [https://iazzetta.github.io/crujs](https://iazzetta.github.io/cru.js/)
