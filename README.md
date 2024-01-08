@@ -3,12 +3,7 @@
 ### Rápido, fácil de usar e performática!
 Uma biblioteca em Javascript onde o objetivo é facilitar as requisições usando apenas o HTML.
 
-### Inicializando
-```js
-$C()
-```
-
-##### Configuração padrão
+#### Configurando
 ```js
 $C({
   'prefix_url': '', // '/api/v1'
@@ -91,10 +86,14 @@ O primeiro parametro é o nome do seu callback e os parametros.
 
 ```html
 <script>
-$cruCallback('meuCallback', (result, element) => {
-  console.log('resultado da requisição', result)
-  console.log('elemento', element)
-})
+window.onload = function() {
+
+  $cruCallback('meuCallback', (result, element) => {
+    console.log('resultado da requisição', result)
+    console.log('elemento', element)
+  })
+
+}
 </script>
 ```
 
@@ -104,16 +103,18 @@ $cruCallback('meuCallback', (result, element) => {
 <div c-container="/lista-clientes-json" c-callback="listaUsuarios"></div>
 
 <script>
+window.onload = function() {
+  
+  $cruCallback('listaUsuarios', (result, element) => {
+    console.log('resultado da requisição', result)
+    console.log('elemento', element)
 
-$cruCallback('listaUsuarios', (result, element) => {
-  console.log('resultado da requisição', result)
-  console.log('elemento', element)
+    for(const user of result.users) {
+      console.log(user.name, user.email)
+    }
+  })
 
-  for(const user of result.users) {
-    console.log(user.name, user.email)
-  }
-})
-
+}
 </script>
 ```
 

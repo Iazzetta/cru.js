@@ -12,6 +12,8 @@
 
     <div class="container">
         <h1>cru.js</h1>
+        <p>Homepage: <a href="https://github.com/Iazzetta/cru.js">https://github.com/Iazzetta/cru.js</p>
+        <hr/>
         <h3 class="subtitle">BASIC</h3>
         <ol>
             <li><a c-target="#basic-docs" c-get="./1-basic.html" c-callback="highlightAll">Container</a></li>
@@ -37,11 +39,13 @@
     <script defer>
         window.onload = function() {
             $cruCallback('highlightAll', (result, element) => {
-                $crus('pre code:not([data-highlighted="yes"])').forEach((el) => {
+                $crus('code:not([data-highlighted="yes"])').forEach((el) => {
                     hljs.highlightElement(el);
                 });
             })
-            hljs.highlightAll();
+            setTimeout(() => {
+                hljs.highlightAll();
+            }, 100)
         }
     </script>
     
