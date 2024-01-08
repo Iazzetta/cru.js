@@ -1,8 +1,9 @@
 const $cru = (el) => document.querySelector(el)
 const $crus = (el) => document.querySelectorAll(el)
 const $cruConfig = {
+    'prefix_url': '', // '/api/v1',
+    'headers': {'Content-Type': 'application/json'},
     'callbacks': {},
-    'headers': {'Content-Type': 'application/json'}
 }
 
 
@@ -31,7 +32,7 @@ const $cruLoadContainer = async (el) => {
     const type = container.getAttribute('c-type') || 'html'
     const callback = container.getAttribute('c-callback') || false
     // request
-    const response = await fetch(url, {
+    const response = await fetch($cruConfig['prefix_url'] + url, {
         method: 'GET', 
         headers: $cruConfig['headers']
     })
@@ -69,7 +70,7 @@ const cruRequest = async (el, method) => {
     const callback = el.getAttribute('c-callback') || false
     const target = el.getAttribute('c-target') || false;
     // request
-    const response = await fetch(url, {
+    const response = await fetch($cruConfig['prefix_url'] + url, {
         method: method, 
         headers: $cruConfig['headers']
     })
@@ -157,7 +158,7 @@ const $cruLoadFormIntercept = () => {
 
 // utils
 const cruFormatURL = (url, isRead, data) => {
-    let url_format = url
+    let url_format = $cruConfig['prefix_url'] + url
     if (isRead) {
         try {
             url_format = new URL(url)
