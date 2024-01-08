@@ -20,6 +20,18 @@ a:hover {
     color: #fff;
 }
 
+table {
+    width: 100%;
+}
+
+table,
+th,
+td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
 .container {
     max-width: 60%;
     width: 100%;
@@ -47,7 +59,7 @@ ol li {
 }
 
 #basic-docs>* {
-    color: #white;
+    color: white;
 }
 
 .random-card {
