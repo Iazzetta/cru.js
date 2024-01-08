@@ -21,7 +21,7 @@ Faça [download do cru.js](https://raw.githubusercontent.com/Iazzetta/cru.js/mai
 Veja alguns exemplos: [https://iazzetta.github.io/crujs](https://iazzetta.github.io/cru.js/)
 
 ### Container
-No cru.js, chamamos de `container` um elemento que contém o atributo `c-container`.
+No cru.js, chamamos de `container` um elemento que contém o atributo `c-container="/seu-endpoint"`.
 Os containers são usados fazer uma requisição assim que a página ser carregada.
 Por padrão o HTML ou JSON da requisição é inserido dentro do elemento do container.
 
@@ -34,7 +34,7 @@ Uma requisição será feita para o endpoint `/users/form` e o HTML retornado se
 Você também pode carregar containers dentro de containers 😁
 
 #### c-target 
-Determine onde o conteúdo será renderizado usando o atributo `c-target=".uma-classe #um-id`.
+Determine onde o conteúdo será renderizado usando o atributo `c-target=".uma-classe #um-id"`.
 
 ```html
 <div c-container="/users/form" c-target="#exemplo"></div>
@@ -45,7 +45,7 @@ Determine onde o conteúdo será renderizado usando o atributo `c-target=".uma-c
 ```
 
 #### c-swap
-Ou então substituir todo o elemento usando o atributo `c-swap=".uma-classe #um-id`.
+Ou então substituir todo o elemento usando o atributo `c-swap=".uma-classe #um-id"`.
 
 ```html
 <div c-container="/users/form" c-swap="#exemplo"></div>
