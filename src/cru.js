@@ -40,8 +40,8 @@ const $cruLoadContainer = async (el) => {
     const $target = target ? $cru(target):container
     // callbacks
     if (target || target != 'off') {
-        if(target)$target.innerHTML = $cruHTML(content)
-        else if (type == 'html') $target.innerHTML = $cruHTML(content)
+        if(target)$target.innerHTML = content
+        else if (type == 'html') $target.innerHTML = content
     }
     if (callback) {
         $cruConfig['callbacks'][callback](content, $target)
@@ -83,9 +83,9 @@ const cruRequest = async (el, method) => {
     
     if ($target) {
         if ($target) {
-            $target.innerHTML = $cruHTML(content)
+            $target.innerHTML = content
         } else if (type == 'html') {
-            el.innerHTML = $cruHTML(content)
+            el.innerHTML = content
         }
     }
     if (callback) $cruConfig['callbacks'][callback](content, $target)
@@ -145,9 +145,9 @@ const $cruLoadFormIntercept = () => {
             })
             const content = await $cruTypeResponse(type, response)
             // callbacks
-            if (swap) $cru(swap).outerHTML = $cruHTML(content)
+            if (swap) $cru(swap).outerHTML = content
             if (append) $cru(append).insertAdjacentHTML('beforeend', content)
-            if (target) $cru(target).innerHTML = $cruHTML(content)
+            if (target) $cru(target).innerHTML = content
             if (reloadContainer) {
                 $cruLoadContainer(form)
             }
@@ -176,17 +176,6 @@ const cruFormatURL = (url, isRead, data) => {
 
 const $cruCallback = (name, callback) => {
     $cruConfig['callbacks'][name] = callback
-}
-const $cruHTML = (html) => {
-    const tempDiv = document.createElement('span');
-    tempDiv.innerHTML = html;
-    const script = tempDiv.querySelector('script');
-    let htmlSemScript = tempDiv.innerHTML
-    if (script) {
-        htmlSemScript = htmlSemScript.replace(script.outerHTML, '');
-        eval(script.textContent);
-    }
-    return htmlSemScript;
 }
 const $cruIsRead = (method) => ['GET', 'HEAD'].includes(method)
 const $cruTypeResponse = async (type, response) => 
