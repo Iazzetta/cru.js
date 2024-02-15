@@ -128,6 +128,8 @@ const $cruLoadFormIntercept = () => {
             const method = form.getAttribute('method').toUpperCase() || 'POST'
             const type = form.getAttribute('c-type') || 'html';
             const append = form.getAttribute('c-append') || false;
+            const prepend = form.getAttribute('c-prepend') || false;
+            const reset = form.getAttribute('c-reset') || false;
             const swap = form.getAttribute('c-swap') || false;
             const target = form.getAttribute('c-target') || false;
             const reloadContainer = form.getAttribute('c-reload-container') || false;
@@ -147,7 +149,9 @@ const $cruLoadFormIntercept = () => {
             // callbacks
             if (swap) $cru(swap).outerHTML = content
             if (append) $cru(append).insertAdjacentHTML('beforeend', content)
+            if (prepend) $cru(prepend).insertAdjacentHTML('afterbegin', content)
             if (target) $cru(target).innerHTML = content
+            if (reset) form.reset()
             if (reloadContainer) {
                 $cruLoadContainer(form)
             }
