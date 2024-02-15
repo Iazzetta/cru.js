@@ -132,7 +132,7 @@ Nesse exemplo, ao clicar nos botões do menu, o conteúdo HTML é renderizado no
   <button c-get="/sobre" c-target=".conteudo-dinamico">Sobre</button>
 </div>
 
-<section class="conteudo"></section>
+<section class="conteudo-dinamico"></section>
 ```
 
 ##### c-post
@@ -199,7 +199,7 @@ Por padrão o método de requisição é `POST`.
 
 **Adicionar elementos**
 
-Você também pode usar o `c-append` para adicionar um elemento dentro de um elemento.
+Você também pode usar o `c-append` e `c-prepend` para adicionar um elemento no final do elemento ou no começo.
 
 ```html
 <form class="c-form" action="/add-item" c-append="#lista-items">
@@ -208,6 +208,17 @@ Você também pode usar o `c-append` para adicionar um elemento dentro de um ele
 </form>
 
 <div id="lista-items"></div>
+```
+
+**Resetar formulário após requisição**
+
+Uma forma facil de resetar todo formulário é usando o `c-reset`.
+
+```html
+<form class="c-form" action="/add-item" c-reset="true">
+  <input type="text" name="nome_item">
+  <button>Adicionar</button>
+</form>
 ```
 
 **Recarregar um formulário depois de fazer o submit**
