@@ -129,6 +129,7 @@ const $cruLoadFormIntercept = () => {
             const type = form.getAttribute('c-type') || 'html';
             const append = form.getAttribute('c-append') || false;
             const prepend = form.getAttribute('c-prepend') || false;
+            const redirect = form.getAttribute('c-redirect') || false;
             const reset = form.getAttribute('c-reset') || false;
             const swap = form.getAttribute('c-swap') || false;
             const target = form.getAttribute('c-target') || false;
@@ -145,6 +146,9 @@ const $cruLoadFormIntercept = () => {
                 headers: $cruConfig['headers'],
                 body: isRead ? null:JSON.stringify(data)
             })
+            if (redirect && response.url) {
+                window.location.href = response.url
+            }
             const content = await $cruTypeResponse(type, response)
             // callbacks
             if (swap) $cru(swap).outerHTML = content
@@ -155,7 +159,7 @@ const $cruLoadFormIntercept = () => {
             if (reloadContainer) {
                 $cruLoadContainer(form)
             }
-            if (callback) $cruConfig['callbacks'][callback](content, form)
+            if (callback) $cruConfig['callbacks'][callback]({status: response.status, data: content}, form)
             $cruLoadEvents()
         })
     })
