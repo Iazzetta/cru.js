@@ -57,7 +57,7 @@ const $cruLoadAllContainers = async () => {
     })
     $crus('[c-reload]:not(.loaded)').forEach( async (el) => {
         el.classList.add('loaded')
-        el.addEventListener('pointerdown', (ev) => $cruLoadContainer(el))
+        el.addEventListener('click', (ev) => $cruLoadContainer(el))
     })
 }
 
@@ -99,25 +99,25 @@ const cruRequest = async (el, method) => {
 const $cruLoadRequests = () => {
     $crus('[c-delete]:not(.loaded)').forEach( (el) => {
         el.classList.add('loaded')
-        el.addEventListener('pointerdown', async (e) => {
+        el.addEventListener('click', async (e) => {
             cruRequest(el, 'delete')
         })
     })
     $crus('[c-put]:not(.loaded)').forEach( (el) => {
         el.classList.add('loaded')
-        el.addEventListener('pointerdown', async (e) => {
+        el.addEventListener('click', async (e) => {
             cruRequest(el, 'put')
         })
     })
     $crus('[c-get]:not(.loaded)').forEach( (el) => {
         el.classList.add('loaded')
-        el.addEventListener('pointerdown', async (e) => {
+        el.addEventListener('click', async (e) => {
             cruRequest(el, 'get')
         })
     })
     $crus('[c-post]:not(.loaded)').forEach( (el) => {
         el.classList.add('loaded')
-        el.addEventListener('pointerdown', async (e) => {
+        el.addEventListener('click', async (e) => {
             cruRequest(el, 'post')
         })
     })
