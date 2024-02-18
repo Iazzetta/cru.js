@@ -68,8 +68,8 @@ const cruRequest = async (el, method) => {
     const removeClosest = el.getAttribute('c-remove-closest') || false
     const redirect = el.getAttribute('c-redirect') || false
     const swap = el.getAttribute('c-swap') || false;
-    const append = form.getAttribute('c-append') || false;
-    const prepend = form.getAttribute('c-prepend') || false;
+    const append = el.getAttribute('c-append') || false;
+    const prepend = el.getAttribute('c-prepend') || false;
     const callback = el.getAttribute('c-callback') || false
     const target = el.getAttribute('c-target') || false;
     // request
