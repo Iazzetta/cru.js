@@ -90,7 +90,8 @@ O primeiro parametro é o nome do seu callback e os parametros.
 window.onload = function() {
 
   $cruCallback('meuCallback', (result, element) => {
-    console.log('resultado da requisição', result)
+    console.log('status', result.status)
+    console.log('conteudo', result.content)
     console.log('elemento', element)
   })
 
@@ -107,10 +108,11 @@ window.onload = function() {
 window.onload = function() {
   
   $cruCallback('listaUsuarios', (result, element) => {
-    console.log('resultado da requisição', result)
+    console.log('status', result.status)
+    console.log('conteudo', result.content)
     console.log('elemento', element)
 
-    for(const user of result.users) {
+    for(const user of result.content.users) {
       console.log(user.name, user.email)
     }
   })
@@ -199,16 +201,49 @@ Por padrão o método de requisição é `POST`.
 
 **Adicionar elementos**
 
-Você também pode usar o `c-append` e `c-prepend` para adicionar um elemento no final do elemento ou no começo.
+Você também pode usar o `c-append` para inserir o retorno no fim do elemento e `c-prepend` inserir o retorno no inicio do elemento:
 
 ```html
-<form class="c-form" action="/add-item" c-append="#lista-items">
+<!-- c-prepend -->
+<form class="c-form" action="/add-item" c-prepend="#lista-prepend">
   <input type="text" name="nome_item">
   <button>Adicionar</button>
 </form>
 
-<div id="lista-items"></div>
+<div id="lista-prepend">
+  <!-- Adiciona no inicio -->
+  
+</div>
+
+<!-- c-append -->
+<form class="c-form" action="/add-item" c-append="#lista-append">
+  <input type="text" name="nome_item">
+  <button>Adicionar</button>
+</form>
+
+<div id="lista-append">
+  
+  <!-- Adiciona no fim -->
+</div>
 ```
+
+**Redirecionar automaticamente**
+
+Adicionando uma URL ao atributo `c-redirect`, após a requisição o usuário é redirecionado.
+
+```html
+<!-- Após adicionar um item, redirecionar par pagina inicial -->
+<form class="c-form" action="/add-item" c-redirect="/">
+  <input type="text" name="nome_item">
+  <button>Adicionar</button>
+</form>
+
+<!-- Nas requisicões via click também -->
+<button c-delete="/posts/1/deletar-item" c-redirect="/posts">
+  Deletar e voltar
+</button>
+```
+
 
 **Resetar formulário após requisição**
 

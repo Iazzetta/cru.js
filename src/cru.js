@@ -57,7 +57,7 @@ const $cruLoadAllContainers = async () => {
     })
     $crus('[c-reload]:not(.loaded)').forEach( async (el) => {
         el.classList.add('loaded')
-        el.addEventListener('click', (ev) => $cruLoadContainer(el))
+        el.addEventListener('pointerdown', (ev) => $cruLoadContainer(el))
     })
 }
 
@@ -66,6 +66,7 @@ const cruRequest = async (el, method) => {
     const type = el.getAttribute('c-type') || 'html'
     const reloadContainer = el.getAttribute('c-reload-container') || false;
     const removeClosest = el.getAttribute('c-remove-closest') || false
+    const redirect = el.getAttribute('c-redirect') || false
     const swap = el.getAttribute('c-swap') || false;
     const callback = el.getAttribute('c-callback') || false
     const target = el.getAttribute('c-target') || false;
@@ -90,30 +91,33 @@ const cruRequest = async (el, method) => {
     }
     if (callback) $cruConfig['callbacks'][callback](content, $target)
     $cruLoadEvents()
+    if (redirect) {
+        window.location.href = redirect
+    }
 }
 
 const $cruLoadRequests = () => {
     $crus('[c-delete]:not(.loaded)').forEach( (el) => {
         el.classList.add('loaded')
-        el.addEventListener('click', async (e) => {
+        el.addEventListener('pointerdown', async (e) => {
             cruRequest(el, 'delete')
         })
     })
     $crus('[c-put]:not(.loaded)').forEach( (el) => {
         el.classList.add('loaded')
-        el.addEventListener('click', async (e) => {
+        el.addEventListener('pointerdown', async (e) => {
             cruRequest(el, 'put')
         })
     })
     $crus('[c-get]:not(.loaded)').forEach( (el) => {
         el.classList.add('loaded')
-        el.addEventListener('click', async (e) => {
+        el.addEventListener('pointerdown', async (e) => {
             cruRequest(el, 'get')
         })
     })
     $crus('[c-post]:not(.loaded)').forEach( (el) => {
         el.classList.add('loaded')
-        el.addEventListener('click', async (e) => {
+        el.addEventListener('pointerdown', async (e) => {
             cruRequest(el, 'post')
         })
     })
@@ -146,9 +150,6 @@ const $cruLoadFormIntercept = () => {
                 headers: $cruConfig['headers'],
                 body: isRead ? null:JSON.stringify(data)
             })
-            if (redirect && response.url) {
-                window.location.href = response.url
-            }
             const content = await $cruTypeResponse(type, response)
             // callbacks
             if (swap) $cru(swap).outerHTML = content
@@ -161,6 +162,9 @@ const $cruLoadFormIntercept = () => {
             }
             if (callback) $cruConfig['callbacks'][callback]({status: response.status, data: content}, form)
             $cruLoadEvents()
+            if (redirect) {
+                window.location.href = redirect
+            }
         })
     })
 }
