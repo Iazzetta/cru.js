@@ -68,6 +68,8 @@ const cruRequest = async (el, method) => {
     const removeClosest = el.getAttribute('c-remove-closest') || false
     const redirect = el.getAttribute('c-redirect') || false
     const swap = el.getAttribute('c-swap') || false;
+    const append = form.getAttribute('c-append') || false;
+    const prepend = form.getAttribute('c-prepend') || false;
     const callback = el.getAttribute('c-callback') || false
     const target = el.getAttribute('c-target') || false;
     // request
@@ -80,6 +82,8 @@ const cruRequest = async (el, method) => {
     // callbacks
     if (removeClosest) el.closest(removeClosest).remove()
     if (swap) $cru(swap).outerHTML = content
+    if (append) $cru(append).insertAdjacentHTML('beforeend', content)
+    if (prepend) $cru(prepend).insertAdjacentHTML('afterbegin', content)
     if (reloadContainer) $cruLoadContainer(el)
     
     if ($target) {
