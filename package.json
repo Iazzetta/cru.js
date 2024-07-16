@@ -21,6 +21,6 @@
   "homepage": "https://github.com/Iazzetta/cru.js#readme",
   "devDependencies": {
     "gulp": "^5.0.0",
-    "gulp-minify": "^3.1.0"
+    "gulp-minify": "^3.0.0"
   }
 }
