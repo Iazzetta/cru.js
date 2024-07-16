@@ -1,20 +1,18 @@
 const $cru = (el) => document.querySelector(el)
 const $crus = (el) => document.querySelectorAll(el)
+
 const $cruConfig = {
     'prefix_url': '', // '/api/v1',
     'headers': {'Content-Type': 'application/json'},
     'callbacks': {},
 }
 
-
 const $C = (config = false) => {
-
     if (config) {
         for (let key of Object.keys(config)) {
             $cruConfig[key] = config[key]
         }
     }
-
     $cruLoadEvents()
 }
 
@@ -31,14 +29,14 @@ const $cruLoadContainer = async (el) => {
     const target = container.getAttribute('c-target') || false
     const type = container.getAttribute('c-type') || 'html'
     const callback = container.getAttribute('c-callback') || false
-    // request
+
     const response = await fetch($cruConfig['prefix_url'] + url, {
         method: 'GET', 
         headers: $cruConfig['headers']
     })
     const content = await $cruTypeResponse(type, response)
     const $target = target ? $cru(target):container
-    // callbacks
+
     if (target || target != 'off') {
         if(target)$target.innerHTML = content
         else if (type == 'html') $target.innerHTML = content
@@ -49,6 +47,7 @@ const $cruLoadContainer = async (el) => {
 
     $cruLoadEvents()
 }
+
 const $cruLoadAllContainers = async () => {
 
     $crus('[c-container]:not(.loaded)').forEach( async (el) => {
@@ -73,14 +72,14 @@ const cruRequest = async (el, method) => {
     const prepend = el.getAttribute('c-prepend') || false;
     const callback = el.getAttribute('c-callback') || false
     const target = el.getAttribute('c-target') || false;
-    // request
+
     const response = await fetch($cruConfig['prefix_url'] + url, {
         method: method, 
         headers: $cruConfig['headers']
     })
     const content = await $cruTypeResponse(type, response)
     const $target = target ? $cru(target):false
-    // callbacks
+
     if (removeClosest) el.closest(removeClosest).remove()
     if (selfRemove) el.remove()
     if (swap) $cru(swap).outerHTML = content
@@ -146,9 +145,9 @@ const $cruLoadFormIntercept = () => {
             const reloadContainer = form.getAttribute('c-reload-container') || false;
             const callback = form.getAttribute('c-callback') || false
             const isRead = $cruIsRead(method)
-            // load data from form
+
             const data = Object.fromEntries(new FormData(e.target).entries());
-            // request
+
             const url_formatted = cruFormatURL(url, isRead, data)
 
             const response = await fetch(url_formatted, {
@@ -157,7 +156,7 @@ const $cruLoadFormIntercept = () => {
                 body: isRead ? null:JSON.stringify(data)
             })
             const content = await $cruTypeResponse(type, response)
-            // callbacks
+
             if (swap) $cru(swap).outerHTML = content
             if (append) $cru(append).insertAdjacentHTML('beforeend', content)
             if (prepend) $cru(prepend).insertAdjacentHTML('afterbegin', content)
@@ -175,7 +174,6 @@ const $cruLoadFormIntercept = () => {
     })
 }
 
-// utils
 const cruFormatURL = (url, isRead, data) => {
     let url_format = $cruConfig['prefix_url'] + url
     if (isRead) {
@@ -195,7 +193,9 @@ const cruFormatURL = (url, isRead, data) => {
 const $cruCallback = (name, callback) => {
     $cruConfig['callbacks'][name] = callback
 }
+
 const $cruIsRead = (method) => ['GET', 'HEAD'].includes(method)
+
 const $cruTypeResponse = async (type, response) => 
     type == 'html' ? await response.text():await response.json()
 
